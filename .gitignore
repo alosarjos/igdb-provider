@@ -4,3 +4,7 @@ Cargo.lock
 
 # IntelliJ related
 /.idea
+
+
+# Environment vars
+.env
