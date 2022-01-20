@@ -1,11 +1,6 @@
 mod client;
-mod error;
+pub mod error;
+mod models;
 
-#[cfg(test)]
-mod tests {
-    #[test]
-    fn it_works() {
-        let result = 2 + 2;
-        assert_eq!(result, 4);
-    }
-}
+pub use client::{auth::APIAuth, Client};
+pub use models::*;

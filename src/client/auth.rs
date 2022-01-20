@@ -7,10 +7,10 @@ use std::env;
 const TWITCH_OAUTH_REQUEST_URL: &str = "https://id.twitch.tv/oauth2/token";
 
 pub struct APIAuth {
-    client_id: String,
+    pub client_id: String,
     client_secret: String,
     refresh_timestamp: Option<DateTime<Utc>>,
-    token: Option<OAuthToken>,
+    pub token: Option<OAuthTokenData>,
 }
 
 impl APIAuth {
@@ -69,7 +69,7 @@ impl APIAuth {
 }
 
 #[derive(Deserialize)]
-pub struct OAuthToken {
+pub struct OAuthTokenData {
     pub access_token: String,
     pub token_type: String,
     pub expires_in: i64,
