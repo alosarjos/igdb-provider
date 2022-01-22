@@ -1,6 +1,6 @@
 use crate::client::auth::APIAuth;
 use crate::error::IGDBResult;
-use crate::models::IGDBQueryableByName;
+use crate::models::QueryableByName;
 use reqwest::header::HeaderMap;
 use reqwest::Response;
 
@@ -20,7 +20,7 @@ impl Client {
     pub async fn query_by_name<T, R>(&self, query: T) -> IGDBResult<Vec<R>>
     where
         T: Into<String>,
-        R: IGDBQueryableByName,
+        R: QueryableByName,
     {
         let query = query.into();
         let fields = R::get_fields();
@@ -67,7 +67,7 @@ impl Client {
 mod tests {
     use crate::client::auth::APIAuth;
     use crate::client::Client;
-    use crate::models::game::Game;
+    use crate::models::Game;
 
     #[tokio::test]
     async fn query_games_by_name() {
