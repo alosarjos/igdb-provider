@@ -6,11 +6,11 @@ packages:
 sources:
   - https://git.sr.ht/~alosarjos/igdb-provider
 secrets:
-  - 8c064ff9-5234-4c3f-a78b-25ff824dbb8d
+  - 00f11c1f-fb64-402f-a674-a977cf05eba4
 tasks:
   - setup: |
       set +x
-      eval $(cat ~/.env)
+      . ~/.buildsecrets
       set -x
   - build: |
       cd igdb-provider
