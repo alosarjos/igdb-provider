@@ -10,7 +10,7 @@ secrets:
 tasks:
   - setup: |
       set +x
-      . ~/.env
+      eval $(cat ~/.env)
       set -x
   - build: |
       cd igdb-provider
