@@ -8,13 +8,12 @@ sources:
 secrets:
   - 00f11c1f-fb64-402f-a674-a977cf05eba4
 tasks:
-  - setup: |
-      set +x
-      . ~/.buildsecrets
-      set -x
   - build: |
       cd igdb-provider
       cargo build
   - test: |
+      set +x
+      . ~/.buildsecrets
+      set -x
       cd igdb-provider
       cargo test
