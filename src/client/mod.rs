@@ -83,7 +83,7 @@ mod tests {
     use crate::client::auth::APIAuth;
     use crate::client::Client;
     use crate::models::Game;
-    use crate::GameCollection;
+    use crate::models::GameCollection;
 
     #[tokio::test]
     async fn query_games_by_name() {
