@@ -1,0 +1,20 @@
+image: alpine/edge
+packages:
+  - openssl-dev
+  - rust
+  - cargo
+sources:
+  - https://git.sr.ht/~alosarjos/igdb-provider
+secrets:
+  - 8c064ff9-5234-4c3f-a78b-25ff824dbb8d
+tasks:
+  - setup: |
+      set +x
+      . ~/.env
+      set -x
+  - build: |
+      cd igdb-provider
+      cargo build
+  - test: |
+      cd igdb-provider
+      cargo test
