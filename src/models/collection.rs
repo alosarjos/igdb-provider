@@ -1,4 +1,4 @@
-use crate::Queryable;
+use crate::models::Queryable;
 use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Deserialize, Serialize)]
