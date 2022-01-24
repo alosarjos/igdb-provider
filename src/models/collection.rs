@@ -14,7 +14,7 @@ impl Queryable for GameCollection {
     }
 
     fn get_fields() -> &'static str {
-        "name, games"
+        "id, name, games"
     }
 
     fn get_filters() -> &'static str {

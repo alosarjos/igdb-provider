@@ -24,9 +24,8 @@ impl Client {
     {
         let id = id.into();
         let fields = R::get_fields();
-        let filters = R::get_filters();
 
-        let request_body = format!("fields {fields}; where {filters} & id = {id};");
+        let request_body = format!("fields {fields}; where id = {id};");
         let response = self.request(R::get_endpoint(), request_body).await?;
 
         let results: Vec<R> = response.json().await?;
@@ -84,6 +83,7 @@ mod tests {
     use crate::client::auth::APIAuth;
     use crate::client::Client;
     use crate::models::Game;
+    use crate::GameCollection;
 
     #[tokio::test]
     async fn query_games_by_name() {
@@ -110,5 +110,18 @@ mod tests {
         let game: Option<Game> = client.query("1942").await.unwrap();
         let game = game.unwrap();
         assert_eq!(game.name, "The Witcher 3: Wild Hunt");
+    }
+
+    #[tokio::test]
+    async fn query_game_collection_by_id() {
+        let mut auth = APIAuth::new_from_env().unwrap();
+        auth.request_token().await.unwrap();
+        assert!(auth.is_token_valid());
+
+        let client = Client::new(auth);
+        let game_collection: Option<GameCollection> = client.query("62").await.unwrap();
+        let game_collection = game_collection.unwrap();
+        assert_eq!(game_collection.name, "The Witcher");
+        assert_eq!(game_collection.games.len(), 20);
     }
 }
