@@ -8,6 +8,8 @@ mod platform;
 mod screenshot;
 mod video;
 
+use std::fmt::Debug;
+
 use serde::de::DeserializeOwned;
 use serde::Serialize;
 
@@ -21,7 +23,7 @@ pub use platform::*;
 pub use screenshot::*;
 pub use video::*;
 
-pub trait Queryable: Serialize + DeserializeOwned {
+pub trait Queryable: Serialize + DeserializeOwned + Debug {
     fn get_endpoint() -> &'static str;
     fn get_fields() -> &'static str;
     fn get_filters() -> &'static str;

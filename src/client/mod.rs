@@ -1,6 +1,6 @@
 use crate::client::auth::APIAuth;
 use crate::error::IGDBResult;
-use crate::models::QueryableByName;
+use crate::models::{Queryable, QueryableByName};
 use reqwest::header::HeaderMap;
 use reqwest::Response;
 
@@ -15,6 +15,22 @@ pub struct Client {
 impl Client {
     pub fn new(auth: APIAuth) -> Self {
         Self { auth }
+    }
+
+    pub async fn query<T, R>(&self, id: T) -> IGDBResult<Option<R>>
+    where
+        T: Into<String>,
+        R: Queryable,
+    {
+        let id = id.into();
+        let fields = R::get_fields();
+        let filters = R::get_filters();
+
+        let request_body = format!("fields {fields}; where {filters} & id = {id};");
+        let response = self.request(R::get_endpoint(), request_body).await?;
+
+        let results: Vec<R> = response.json().await?;
+        Ok(results.into_iter().next())
     }
 
     pub async fn query_by_name<T, R>(&self, query: T) -> IGDBResult<Vec<R>>
@@ -82,5 +98,17 @@ mod tests {
             .iter()
             .find(|game| game.name == "The Witcher 3: Wild Hunt");
         assert!(game.is_some());
+    }
+
+    #[tokio::test]
+    async fn query_game_by_id() {
+        let mut auth = APIAuth::new_from_env().unwrap();
+        auth.request_token().await.unwrap();
+        assert!(auth.is_token_valid());
+
+        let client = Client::new(auth);
+        let game: Option<Game> = client.query("1942").await.unwrap();
+        let game = game.unwrap();
+        assert_eq!(game.name, "The Witcher 3: Wild Hunt");
     }
 }
