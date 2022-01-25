@@ -8,6 +8,10 @@ pub mod auth;
 
 const IGDB_API_BASE_URL: &str = "https://api.igdb.com/v4";
 
+/**
+ * The client provides the functionality required to make requests to the IGDB
+ * API and parses the results into the models provided by the crate
+ */
 pub struct Client {
     auth: APIAuth,
 }
@@ -17,6 +21,9 @@ impl Client {
         Self { auth }
     }
 
+    /**
+     * Queries for a single item by Id and returns a deserialized response
+     */
     pub async fn query<T, R>(&self, id: T) -> IGDBResult<Option<R>>
     where
         T: Into<String>,
@@ -32,6 +39,9 @@ impl Client {
         Ok(results.into_iter().next())
     }
 
+    /**
+     * Queries for multiple items by name and returns a deserialized response
+     */
     pub async fn query_by_name<T, R>(&self, query: T) -> IGDBResult<Vec<R>>
     where
         T: Into<String>,
