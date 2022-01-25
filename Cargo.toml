@@ -1,7 +1,11 @@
 [package]
 name = "igdb_provider"
-authors = ["José Miguel Sarasola<alosarjos@gmail.com>"]
+description = "IGDB API client"
 version = "0.1.0"
+authors = ["José Miguel Sarasola<alosarjos@gmail.com>"]
+homepage = "https://git.sr.ht/~alosarjos/igdb-provider"
+repository = "https://git.sr.ht/~alosarjos/igdb-provider"
+license = "MIT"
 edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
