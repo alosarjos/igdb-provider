@@ -6,7 +6,8 @@ packages:
 sources:
   - https://git.sr.ht/~alosarjos/igdb-provider
 secrets:
-  - 00f11c1f-fb64-402f-a674-a977cf05eba4
+  - 3b0ba6c0-faae-412f-b343-10ecc17f6fd3
+  - b14cc9e4-a7bf-462d-8c56-9d4e0489fa4c
 tasks:
   - build: |
       cd igdb-provider
@@ -17,3 +18,14 @@ tasks:
       set -x
       cd igdb-provider
       cargo test
+      git describe --exact-match HEAD || complete-build
+  - publish: |
+      set +x
+      . ~/.cargosecrets
+      set -x
+      cd igdb-provider
+      cargo publish
+triggers:
+  - action: email
+    condition: always
+    to: José Miguel Sarasola <alosarjos@gmail.com>
