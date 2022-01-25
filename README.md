@@ -1,4 +1,5 @@
-# IGDB Provider
+# IGDB Provider [![builds.sr.ht status](https://builds.sr.ht/~alosarjos/igdb-provider.svg)](https://builds.sr.ht/~alosarjos/igdb-provider?)
+
 
 This crate is intended to fetch data from the IGDB API as deserialized objects.
 
