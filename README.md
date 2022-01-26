@@ -11,7 +11,7 @@ Once you have them, you create an `APIAuth` object either passing both variables
 
 Call to the `request_token` method to get the OAuth data required for the client requests.
 
-Create a `Client` object and make requests for the supported models. (More queries and options to come on the future)
+Create a `Client` object and make requests for the supported models.
 
 ### Example
 
@@ -25,7 +25,7 @@ Create a `Client` object and make requests for the supported models. (More queri
 
 ## What is working
 
-You can either request `Collections` by ID or `Games` by ID or name.
+You can either request `Collections` by ID or `Games` by ID or name. This fits my basic needs for personal projects but I would really appreciate getting some help on improving the functionality of this lib.
 
 ## Note
 
