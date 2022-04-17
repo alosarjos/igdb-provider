@@ -1,5 +1,5 @@
 [package]
-name = "igdb-provider"
+name = "igdb_provider"
 description = "IGDB API client"
 version = "0.1.0"
 authors = ["José Miguel Sarasola<alosarjos@gmail.com>"]
