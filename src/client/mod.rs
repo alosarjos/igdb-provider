@@ -39,6 +39,14 @@ impl Client {
         Ok(results.into_iter().next())
     }
 
+    pub fn is_token_valid(&self) -> bool {
+        self.auth.is_token_valid()
+    }
+
+    pub async fn refresh_auth_token(&mut self) -> IGDBResult<()> {
+        Ok(self.auth.refresh_token().await?)
+    }
+
     /**
      * Queries for multiple items by name and returns a deserialized response
      */
