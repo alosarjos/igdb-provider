@@ -140,6 +140,6 @@ mod tests {
         let game_collection: Option<GameCollection> = client.query("62").await.unwrap();
         let game_collection = game_collection.unwrap();
         assert_eq!(game_collection.name, "The Witcher");
-        assert_eq!(game_collection.games.len(), 20);
+        assert_eq!(game_collection.games.len(), 21);
     }
 }
