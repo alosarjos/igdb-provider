@@ -5,6 +5,8 @@ use crate::models::{
 use serde::{Deserialize, Serialize};
 use serde_repr::{Deserialize_repr, Serialize_repr};
 
+use super::cover::Cover;
+
 pub type GameId = i32;
 
 #[derive(Debug, Deserialize, Serialize)]
@@ -16,7 +18,7 @@ pub struct Game {
     pub cover: Cover,
     pub dlcs: Option<Vec<GameId>>,
     pub expansions: Option<Vec<GameId>>,
-    pub first_release_date: Option<i32>,
+    pub first_release_date: Option<i64>,
     pub game_modes: Option<Vec<GameMode>>,
     pub genres: Option<Vec<Genre>>,
     pub involved_companies: Option<Vec<InvolvedCompany>>,
@@ -43,12 +45,6 @@ pub enum Category {
     ExpandedGame = 10,
     Port = 11,
     Fork = 12,
-}
-
-#[derive(Debug, Deserialize, Serialize)]
-pub struct Cover {
-    pub id: i32,
-    pub url: String,
 }
 
 impl QueryableByName for Game {}

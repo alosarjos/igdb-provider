@@ -1,5 +1,6 @@
 mod collection;
 mod company;
+mod cover;
 mod game;
 mod game_mode;
 mod genre;
@@ -15,6 +16,7 @@ use serde::Serialize;
 
 pub use collection::*;
 pub use company::*;
+pub use cover::*;
 pub use game::*;
 pub use game_mode::*;
 pub use genre::*;
